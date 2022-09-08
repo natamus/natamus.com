@@ -1,0 +1,182 @@
+.outer {
+  display: table;
+  margin-top: -38.5px;
+
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+@media only screen and (max-width: 800px) {
+	.headerwrapper div.descwrap {
+		left: 5%;
+		width: 90%;
+	}
+}
+
+.headerwrapper {
+	margin-top: 0px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%
+
+	min-height: 100vh;
+}
+.headerwrapper .logo {
+	width: 400px;
+}
+.headerwrapper h1 {
+	font-size: 50px;
+	margin: 10px 0 0 0;
+}
+.headerwrapper h1 span.pre { color: rgb(0, 169, 227); }
+.headerwrapper h1 span.post { color: rgb(88, 89, 91); }
+.headerwrapper h2 {
+	margin-top: 0;
+	font-size: 25px;
+}
+.headerwrapper p {
+	text-align: left;
+}
+
+.headerwrapper .descwrap {
+	position: relative;
+
+	width: 800px;
+	left: calc(50% - 400px);
+
+	margin-top: 50px;
+}
+
+.headerwrapper .descwrap p {
+	font-size: 20px;
+
+    text-align: justify;
+    text-align-last: center;
+}
+
+.headerwrapper .descwrap button {
+	margin-top: 10px;
+	padding: 12px;
+
+	font-size: 20px;
+
+	border-radius: 8px;
+	border-color: black;
+}
+
+.headerwrapper .descwrap button:hover {
+	cursor: pointer;
+	background-color: rgb(140, 201, 222);
+}
+
+.headerwrapper .descwrap .subimages {
+	margin-top: 50px;
+	margin-bottom: 150px;
+}
+
+.headerwrapper .arrowwrapper {
+	position: fixed;
+	z-index: 11;
+
+	left: calc(50% - 20px);
+	bottom: 10px;
+}
+.headerwrapper .arrowwrapper .arrow {
+  width: 40px;
+  height: 40px;
+
+  background-image: url("/assets/images/downarrow.png");
+  background-size: contain;
+}
+.bounce {
+  animation: bounce 5s infinite;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+.headerwrapper .arrowwrapper .arrow:hover {
+	cursor: pointer;
+}
+
+.headerwrapper .wave {
+	position: fixed;
+	z-index: -1;
+	bottom: -60px;
+
+	height: 200px;
+	width: 100%;
+
+	background: url("/assets/images/wave2.png");
+	background-repeat: repeat-x;
+	background-position: center center;
+}
+
+.itemwrapper {
+	min-height: 70vh;
+	margin-bottom: 15vh;
+}
+.itemwrapper .item {
+	position: relative;
+	display: inline-block;
+	margin: 20px;
+
+	height: 200px;
+	width: 400px;
+	border: 2.5px solid rgb(78, 92, 117);
+	border-radius: 10px;
+
+	text-align: left;
+	background-color: rgb(230, 230, 230, 0.5);
+}
+.itemwrapper .item:hover {
+	background-color: rgb(230, 230, 230, 1.0);
+}
+.itemwrapper .item img {
+	position: relative;
+	height: 160px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.itemwrapper .item p,
+.itemwrapper .item h1 {
+	position: absolute;
+	top: 0;
+	left: 200px;
+
+	width: 175px;
+	text-align: left;
+}
+.itemwrapper .item h1 {
+	margin-left: -5px;
+	text-shadow: 1px 1px black;
+	color: rgb(60, 80, 100);
+
+	text-decoration: underline;
+}
+.itemwrapper .item h1 .mcmods {
+	font-size: 18px;
+}
+.itemwrapper .item p {
+	padding-left: 5px;
+	top: 50px;
+
+	font-size: 14px;
+}
+
+.itemwrapper .item br {
+	font-size: 200%;
+}

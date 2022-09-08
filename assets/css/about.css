@@ -1,0 +1,25 @@
+.aboutwrapper {
+	width: 100%;
+
+	margin-top: 50px;
+}
+
+.aboutwrapper .subtext {
+	margin-bottom: 30px;
+
+	text-align: justify;
+	text-align-last: center;
+}
+
+@media only screen and (max-width: 940px) {
+	.aboutwrapper .subtext {
+		width: 90%;
+		margin-left: 5%; 
+	}
+}
+@media only screen and (min-width: 941px) {
+	.aboutwrapper .subtext {
+		width: 900px;
+		margin-left: calc(50% - 450px);
+	}
+}
