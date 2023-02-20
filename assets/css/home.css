@@ -1,182 +1,265 @@
-.outer {
-  display: table;
-  margin-top: -38.5px;
-
-  height: 100%;
-  min-height: 100vh;
-  width: 100%;
+:root {
+    --ease-back-in: cubic-bezier(0.36, 0, 0.66, -0.56);
+    --ease-back-out: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.middle {
-  display: table-cell;
-  vertical-align: middle;
+* {
+    box-sizing: border-box;
 }
 
-@media only screen and (max-width: 800px) {
-	.headerwrapper div.descwrap {
-		left: 5%;
-		width: 90%;
-	}
+body,
+html {
+    height: 100%;
 }
 
-.headerwrapper {
-	margin-top: 0px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 50%
-
-	min-height: 100vh;
-}
-.headerwrapper .logo {
-	width: 400px;
-}
-.headerwrapper h1 {
-	font-size: 50px;
-	margin: 10px 0 0 0;
-}
-.headerwrapper h1 span.pre { color: rgb(0, 169, 227); }
-.headerwrapper h1 span.post { color: rgb(88, 89, 91); }
-.headerwrapper h2 {
-	margin-top: 0;
-	font-size: 25px;
-}
-.headerwrapper p {
-	text-align: left;
+body {
+    margin: 0;
 }
 
-.headerwrapper .descwrap {
-	position: relative;
-
-	width: 800px;
-	left: calc(50% - 400px);
-
-	margin-top: 50px;
+html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-size: 16px;
 }
 
-.headerwrapper .descwrap p {
-	font-size: 20px;
+.titlewrapper {
+    position: fixed;
+    left: calc(50% - 300px);
+    bottom: 50px;
+    width: 600px;
 
-    text-align: justify;
-    text-align-last: center;
+    text-align: center;
+    color: white;
 }
 
-.headerwrapper .descwrap button {
-	margin-top: 10px;
-	padding: 12px;
+.titlewrapper p {
+    margin: 0;
+}
+.titlewrapper .header {
+    font-size: 22px;
+    width: auto;
+}
+.titlewrapper .header span {
+    padding-bottom: 2px;
 
-	font-size: 20px;
+    color: #dce1e4;
+    border-bottom: 2px solid #dce1e4;
+}
+.titlewrapper .subheader {
+    padding-top: 12px;
+    font-size: 16px;
 
-	border-radius: 8px;
-	border-color: black;
+    color: #9aa6b1;
 }
 
-.headerwrapper .descwrap button:hover {
-	cursor: pointer;
-	background-color: rgb(140, 201, 222);
+.bubbles {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    touch-action: manipulation;
+    width: auto;
+    height: auto;
 }
 
-.headerwrapper .descwrap .subimages {
-	margin-top: 50px;
-	margin-bottom: 150px;
+.bubble {
+    position: absolute;
+    -webkit-tap-highlight-color: transparent;
+    transform: translate(-50%, -50%) translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) scale(var(--scale));
+    width: calc(var(--radius) * 2px);
+    height: calc(var(--radius) * 2px);
 }
 
-.headerwrapper .arrowwrapper {
-	position: fixed;
-	z-index: 11;
+.control {
+    display: none;
+}
 
-	left: calc(50% - 20px);
-	bottom: 10px;
+.circle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: var(--backgroundimage);
+    border-radius: calc(var(--radius) * 1px);
+    box-shadow: inset 0 0 0 calc(var(--radius) * 1px) var(--color);
+    cursor: pointer;
+    transition: box-shadow 300ms var(--ease-back-in);
+    width: auto;
+    height: auto;
 }
-.headerwrapper .arrowwrapper .arrow {
-  width: 40px;
-  height: 40px;
 
-  background-image: url("/assets/images/downarrow.png");
-  background-size: contain;
+.control:checked + .circle {
+    box-shadow: inset 0 0 0 calc(var(--radius) * 1px) var(--color);
+    transition-timing-function: var(--ease-back-out);
 }
-.bounce {
-  animation: bounce 5s infinite;
+
+@keyframes loader {
+    0%,
+    70%,
+    100% {
+        box-shadow: inset 0 0 0 calc(var(--size) * 0.5) var(--color);
+    }
+
+    80%,
+    90% {
+        box-shadow: inset 0 0 0 calc(var(--size) * 0.25) var(--color);
+    }
 }
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+
+.loader,
+.loader::before,
+.loader::after {
+    position: absolute;
+    animation: loader var(--duration) infinite linear;
+    border-radius: calc(var(--size) * 0.5);
+    box-shadow: inset 0 0 0 calc(var(--size) * 0.5) var(--color);
+    width: var(--size);
+    height: var(--size);
+}
+
+.loader {
+    --color: #95A5A6;
+    --size: 1rem;
+    --duration: 1s;
+
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 200ms;
+}
+
+.loader--hide {
+    opacity: 0;
+}
+
+.loader::before,
+.loader::after {
+    top: 0;
+    left: 0;
+    content: '';
+}
+
+.loader::before {
+    animation-delay: calc(var(--duration) / -3);
+    transform: translateX(-100%) translate(calc(var(--size) * -0.5));
+}
+
+.loader::after {
+    animation-delay: calc(var(--duration) / 3);
+    transform: translateX(100%) translate(calc(var(--size) * 0.5));
+}
+
+/* Small Bubbles */
+.smallbubbles {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  /*z-index defult value=1*/
+  z-index:0;
+  /*upgrade gpu rendering*/
+  transform:translateZ(0);
+}
+
+.smallbubbles li {
+  position:absolute;
+  list-style:none;
+  display:block;
+  background:rgba(255,255,255,0.2);
+  /*make bubble on page bottom*/
+   bottom:-100px;
+  animation:bubble-ani 20s linear infinite;
+  border-radius:100%;
+}
+
+/* glow of the bubbles*/
+.smallbubbles li:before {
+    position: absolute;
+    left: 20%;
+    top: 21%;
+    width: 25%;
+    content: '';
+    background: rgba(255,255,255,0.2);
+    display: block;
+    height: 25%;
+    border-radius: 100%;
+}
+
+.smallbubbles li:nth-child(1){
+  width:20px;
+  height:20px;
+  left:15%;
+}
+
+.smallbubbles li:nth-child(2){
+  width:40px;
+  height:40px;
+  left:40%;
+  animation-duration:13s;
+  animation-delay:2s;
+}
+
+.smallbubbles li:nth-child(3){
+  width:25px;
+  height:25px;
+  left:30%;
+  animation-duration:18s;
+  animation-delay:3.5s;
+}
+
+.smallbubbles li:nth-child(4){
+  width:60px;
+  height:60px;
+  left:55%;
+  animation-duration:23s;
+  animation-delay:1.5s;
+}
+
+.smallbubbles li:nth-child(5){
+  width:20px;
+  height:20px;
+  left:35%;
+  animation-duration:16s;
+  animation-delay:1s;
+}
+
+.smallbubbles li:nth-child(6){
+  width:50px;
+  height:50px;
+  left:75%;
+  animation-duration:11s;
+  animation-delay:4s;
+}
+
+.smallbubbles li:nth-child(7){
+  width:30px;
+  height:30px;
+  left:85%;
+  animation-duration:10s;
+  animation-delay:5.5s;
+}
+
+.smallbubbles li:nth-child(8){
+  width:20px;
+  height:20px;
+  left:80%;
+  animation-duration:16s;
+  animation-delay:2s;
+}
+
+@keyframes bubble-ani {
+  0%{
+    -webkit-transform:translateY(0);
+    transform:translateY(0);
   }
-  40% {
-    transform: translateY(-15px);
+  100%{
+    -webkit-transform:translateY(-1080px);
+    transform:translateY(-1080px);
   }
-  60% {
-    transform: translateY(-10px);
-  }
-}
-.headerwrapper .arrowwrapper .arrow:hover {
-	cursor: pointer;
-}
-
-.headerwrapper .wave {
-	position: fixed;
-	z-index: -1;
-	bottom: -60px;
-
-	height: 200px;
-	width: 100%;
-
-	background: url("/assets/images/wave2.png");
-	background-repeat: repeat-x;
-	background-position: center center;
-}
-
-.itemwrapper {
-	min-height: 70vh;
-	margin-bottom: 15vh;
-}
-.itemwrapper .item {
-	position: relative;
-	display: inline-block;
-	margin: 20px;
-
-	height: 200px;
-	width: 400px;
-	border: 2.5px solid rgb(78, 92, 117);
-	border-radius: 10px;
-
-	text-align: left;
-	background-color: rgb(230, 230, 230, 0.5);
-}
-.itemwrapper .item:hover {
-	background-color: rgb(230, 230, 230, 1.0);
-}
-.itemwrapper .item img {
-	position: relative;
-	height: 160px;
-	margin-top: 20px;
-	margin-left: 20px;
-}
-.itemwrapper .item p,
-.itemwrapper .item h1 {
-	position: absolute;
-	top: 0;
-	left: 200px;
-
-	width: 175px;
-	text-align: left;
-}
-.itemwrapper .item h1 {
-	margin-left: -5px;
-	text-shadow: 1px 1px black;
-	color: rgb(60, 80, 100);
-
-	text-decoration: underline;
-}
-.itemwrapper .item h1 .mcmods {
-	font-size: 18px;
-}
-.itemwrapper .item p {
-	padding-left: 5px;
-	top: 50px;
-
-	font-size: 14px;
-}
-
-.itemwrapper .item br {
-	font-size: 200%;
 }
